@@ -27,7 +27,7 @@ public class UserController {
 	
 	@Autowired
 	private UserService service;
-	
+		
 	@GetMapping
 	public ResponseEntity<List<UserDTO>> findAll(){
 		List<User> list = service.findAll();
@@ -69,4 +69,6 @@ public class UserController {
 		User user = service.findById(id);
 		return ResponseEntity.ok().body(user.getPosts());
 	}
+	
+	
 }
