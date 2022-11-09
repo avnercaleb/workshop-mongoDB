@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.workshopmongo.entities.Post;
 import com.workshopmongo.entities.User;
 import com.workshopmongo.entities.dto.UserDTO;
 import com.workshopmongo.services.UserService;
@@ -61,5 +62,11 @@ public class UserController {
 		user.setId(id);
 		user = service.update(user);
 		return ResponseEntity.ok().build();
+	}
+	
+	@GetMapping("/{id}/posts")
+	public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+		User user = service.findById(id);
+		return ResponseEntity.ok().body(user.getPosts());
 	}
 }
